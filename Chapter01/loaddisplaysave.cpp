@@ -22,7 +22,7 @@ int main()
 	cv::Mat image;
 	std::cout << "This image is " << image.rows << ",  x " << image.cols << std::endl;
 
-	image = cv::imread("puppy.bmp", cv::IMREAD_UNCHANGED);
+	image = cv::imread("puppy.bmp", cv::IMREAD_GRAYSCALE);
 
 	if (image.empty())
 	{
@@ -31,7 +31,7 @@ int main()
 	}
 
 	std::cout << "This image is " << image.rows << ",  x " << image.cols << std::endl;
-	std::cout << "This image has " << image.channels() << "channels" << std::endl;
+	std::cout << "This image has " << image.channels() << " channels" << std::endl;
 
 	cv::namedWindow("Origin Image");
 	cv::imshow("Origin Image", image);
@@ -49,7 +49,8 @@ int main()
 	cv::imwrite("output.bmp", result);
 
 	cv::namedWindow("Drawing on an image");
-	cv::circle(image, cv::Point(155, 110), 65, cv::FONT_HERSHEY_PLAIN, 1, 255, 2);
+	cv::circle(image, cv::Point(155, 110), 65, 0, 3);
+	cv::putText(image, "This is a dog", cv::Point(40, 200), cv::FONT_HERSHEY_PLAIN, 2.0, 255, 2);
 	cv::imshow("Drawing on an image", image);
 	cv::waitKey(0);
 
